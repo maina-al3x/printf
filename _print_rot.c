@@ -1,54 +1,40 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * print_rot13string - print Rot13 encrypted string
- * @types: type args
- * @buffer: buffer
- * @flags: find active flags
- * @width: width
- * @precision: precision
- * @size: size
+ * rot_func - function that encodes a string using rot13
  *
- * Return: int
+ * @args: string passed from main
+ *
+ * Return: counter.
  */
 
-int print_rot13string(va_list types, char buffer[],
-		      int flags, int width, int precision, int size)
+int rot_func(va_list args)
 {
-	char x;
-	char *str;
-	unsigned int i, j;
-	int count = 0;
-	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	int i, l;
+	char str1[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char str2[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	char *s;
 
-	str = va_arg(types, char *);
-	UNUSED(buffer);
-	UNUSED(flags);
-	UNUSED(width);
-	UNUSED(precision);
-	UNUSED(size);
-
-	if (str == NULL)
-		str = "(AHYY)";
-	for (i = 0; str[i]; i++)
+	s = va_arg(args, char *);
+	if (s == NULL)
 	{
-		for (j = 0; in[j]; j++)
+		s = "(null)";
+	}
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		for (l = 0; str1[l]; l++)
 		{
-			if (in[j] == str[i])
+			if (s[i] == str1[l])
 			{
-				x = out[j];
-				write(1, &x, 1);
-				count++;
+				s[i] = str2[l];
+				_putchar(s[i]);
 				break;
 			}
-		}
-		if (!in[j])
-		{
-			x = str[i];
-			write(1, &x, 1);
-			count++;
+			if (!str1[l])
+				_putchar(s[i]);
 		}
 	}
-	return (count);
+	return (i);
 }
