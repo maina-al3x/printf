@@ -13,7 +13,7 @@ int i_func(va_list args)
 {
 	int n;
 	int count = 0;
-	
+
 	n = va_arg(args, int);
 	print_number(n, &count);
 	return (count);
@@ -30,7 +30,7 @@ int i_func(va_list args)
 void print_number(int n, int *pcount)
 {
 	unsigned int m;
-	
+
 	if (n >= 0)
 	{
 		m = n;
