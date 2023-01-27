@@ -29,5 +29,7 @@ int d_func(va_list args);
 int b_func(va_list args);
 int rev_func(va_list args);
 int rot_func(va_list args);
+int print_octal(va_list o);
+int print_unsig(va_list u);
 
 #endif /* MAIN_H */
